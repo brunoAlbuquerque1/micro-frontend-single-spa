@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Shoppe</title>
+    <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.7/runtime.min.js"></script>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';"
+    />
+    <meta name="importmap-type" content="systemjs-importmap" />
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+          "react": "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js",
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js",
+          "zustand": "https://unpkg.com/zustand@3.6.9/system/index.js",
+          "zustand/middleware": "https://unpkg.com/zustand@3.6.9/system/middleware.js"
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js"
+      as="script"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+        list-style: none !important;
+        outline: none;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body,
+      html {
+        background-color: #fff;
+        color: #000;
+      }
+
+      body {
+        font: normal 1.6rem "DM Sans", sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        min-height: 100vh;
+      }
+
+      main {
+        display: flex;
+        flex: 1 1 auto;
+        width: 100%;
+        padding: 1.6rem;
+      }
+
+      @media only screen and (min-width: 1024px) {
+        main {
+          padding: 1.6rem 4.8rem;
+        }
+      }
+
+      main > div {
+        display: flex;
+        max-width: 124.8rem;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      @media only screen and (min-width: 1024px) {
+        h1 {
+          font-size: 3.3rem;
+        }
+      }
+    </style>
+
+    <% if (isLocal) { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "@shoppe/root-config": "//localhost:9000/shoppe-root-config.js",
+          "@shoppe/app-header": "//localhost:8100/shoppe-app-header.js",
+          "@shoppe/app-home": "//localhost:8000/shoppe-app-home.js",
+          "@shoppe/app-footer": "//localhost:8110/shoppe-app-footer.js",
+          "@shoppe/app-shop": "//localhost:8300/shoppe-app-shop.js",
+          "@shoppe/app-account": "//localhost:8310/shoppe-app-account.js",
+          "@shoppe/app-cart": "//localhost:8320/shoppe-app-cart.js",
+          "@shoppe/app-product": "//localhost:8330/shoppe-app-product.js",
+          "@shoppe/util-state": "//localhost:8500/shoppe-util-state.js",
+          "@shoppe/util-ui": "//localhost:8510/shoppe-util-ui.js"
+        }
+      }
+    </script>
+    <% } else { %>
+    <script type="systemjs-importmap" src="/config/import-map.json"></script>
+    <% } %>
+
+    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+    <% if (isLocal) { %>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
+    <% } else { %>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+    <% } %>
+  </head>
+  <body>
+    <noscript> You need to enable JavaScript to run this app. </noscript>
+    <script>
+      System.import("@shoppe/root-config");
+    </script>
+    <import-map-overrides-full
+      show-when-local-storage="devtools"
+      dev-libs
+    ></import-map-overrides-full>
+  </body>
+</html>
